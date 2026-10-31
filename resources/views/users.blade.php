@@ -7,7 +7,7 @@
         <p class="eyebrow">Staff Directory</p>
         <h1>User Accounts</h1>
         <p class="description">
-            A list of staff members and their assigned responsibilities in the POS system.
+            A list of staff members retrieved from the database using Eloquent.
         </p>
 
         <span class="count">{{ count($users) }} staff accounts found</span>
@@ -18,7 +18,6 @@
                     <th>No.</th>
                     <th>Username</th>
                     <th>Full Name</th>
-                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +26,6 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $user['username'] }}</td>
                         <td>{{ $user['full_name'] }}</td>
-                        <td>{{ $user['role'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

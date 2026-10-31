@@ -7,7 +7,7 @@
         <p class="eyebrow">Customer Directory</p>
         <h1>Customer Accounts</h1>
         <p class="description">
-            A temporary directory of customer information from a static PHP array.
+            A directory of customer information retrieved from the database using Eloquent.
         </p>
 
         <span class="count">{{ count($customers) }} customer records found</span>

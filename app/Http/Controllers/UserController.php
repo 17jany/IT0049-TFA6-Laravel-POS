@@ -2,37 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class UserController extends Controller
 {
     public function index()
     {
-        $users = [
-            [
-                'username' => 'admin01',
-                'full_name' => 'Alex Santos',
-                'role' => 'Administrator',
-            ],
-            [
-                'username' => 'cashier01',
-                'full_name' => 'Bea Reyes',
-                'role' => 'Cashier',
-            ],
-            [
-                'username' => 'cashier02',
-                'full_name' => 'Carlo Cruz',
-                'role' => 'Cashier',
-            ],
-            [
-                'username' => 'manager01',
-                'full_name' => 'Dana Garcia',
-                'role' => 'Manager',
-            ],
-            [
-                'username' => 'staff01',
-                'full_name' => 'Eli Mendoza',
-                'role' => 'Staff',
-            ],
-        ];
+        $users = User::all();
 
         return view('users', compact('users'));
     }

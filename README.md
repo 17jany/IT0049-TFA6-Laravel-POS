@@ -1,6 +1,6 @@
-# IT0049 TFA5 — Laravel POS Foundations
+# IT0049-TFA6-Laravel-POS
 
-A four-page Point-of-Sale (POS) application built with Laravel. This project recreates the POS application from TFA1 using Laravel routes, controllers, and Blade views.
+A four-page Point-of-Sale (POS) application built with Laravel. This project rebuilds the TFA5 POS application using database migrations, a seeder, and Eloquent models to store and retrieve customer and user records.
 
 ## Project Information
 
@@ -15,8 +15,8 @@ A four-page Point-of-Sale (POS) application built with Laravel. This project rec
 |---|---|---|
 | Home | `/` | Introduces the POS application and links to the other pages. |
 | About | `/about` | Describes the project and its application structure. |
-| Customer Accounts | `/customers` | Displays customer names, email addresses, and phone numbers. |
-| User Accounts | `/users` | Displays usernames, full names, and roles. |
+| Customer Accounts | `/customers` | Displays customer names, email addresses, and phone numbers retrieved from the database. |
+| User Accounts | `/users` | Displays usernames and full names retrieved from the database. |
 
 ## Features
 
@@ -24,15 +24,18 @@ A four-page Point-of-Sale (POS) application built with Laravel. This project rec
 - Routes defined in `routes/web.php`
 - Separate controllers for the pages, customers, and users
 - Blade views using a shared layout
-- Five sample customer records in a static PHP array
-- Five sample user records in a static PHP array
+- Database migrations for the `customers` and `users` tables
+- Eloquent models for customers and users
+- Seeder that adds at least five sample records to each table
 - Blade `@foreach` loops to display customer and user records
 
 ## Built With
 
 - PHP
 - Laravel
+- Eloquent ORM
 - Blade
+- SQLite
 - HTML
 - CSS
 
@@ -46,13 +49,13 @@ A four-page Point-of-Sale (POS) application built with Laravel. This project rec
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/17jany/IT0049-TFA5-Laravel-POS.git
+   git clone https://github.com/17jany/IT0049-TFA6-Laravel-POS.git
    ```
 
 2. Open the project folder:
 
    ```bash
-   cd IT0049-TFA5-Laravel-POS
+   cd IT0049-TFA6-Laravel-POS
    ```
 
 3. Install the PHP dependencies:
@@ -73,21 +76,43 @@ A four-page Point-of-Sale (POS) application built with Laravel. This project rec
    php artisan key:generate
    ```
 
-6. Start the development server:
+6. Create the SQLite database file if it does not already exist:
+
+   ```bash
+   touch database/database.sqlite
+   ```
+
+7. Run the migrations and seed the database:
+
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+
+8. Start the Laravel development server:
 
    ```bash
    php artisan serve
    ```
 
-7. Open the local address shown in Terminal, usually `http://127.0.0.1:8000`.
+9. Open the local address shown in Terminal, usually `http://127.0.0.1:8000`.
 
 ## Project Structure
 
 ```text
-app/Http/Controllers/
-├── PageController.php
-├── CustomerController.php
-└── UserController.php
+app/
+├── Http/Controllers/
+│   ├── PageController.php
+│   ├── CustomerController.php
+│   └── UserController.php
+└── Models/
+    ├── Customer.php
+    └── User.php
+
+database/
+├── migrations/
+└── seeders/
+    ├── DatabaseSeeder.php
+    └── PosSeeder.php
 
 resources/views/
 ├── layouts/
@@ -101,11 +126,13 @@ routes/
 └── web.php
 ```
 
-## Data
+## Database
 
-The customer and user records are sample data stored in static PHP arrays inside their respective controllers. The account pages do not use a database.
+The `customers` table stores each customer's full name, email address, and phone number. The `users` table stores each user's unique username and full name.
+
+The `PosSeeder` adds sample customer and user records. The `Customer` and `User` Eloquent models retrieve the records from the database, and the account pages display them through Blade `@foreach` loops.
 
 ## Activity
 
-This project was created for the IT0049 TFA5 laboratory activity, “From Zero to Four Pages, Again: Your First Laravel Application.”
+This project was created for the IT0049 TFA6 laboratory activity, “From Arrays to Eloquent: Your First Database-Driven Laravel Application.”
 
